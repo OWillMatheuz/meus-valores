@@ -87,6 +87,11 @@ svg {
   }
 }
 
+.valor {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: rgb(33, 33, 84);
+}
 
 
 
