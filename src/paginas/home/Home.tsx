@@ -17,10 +17,33 @@ function Home() {
     ValorRegistrado[]
   >([]);
   const [km, setKm] = useState(0);
+  const [exibirMensagem, setExibirMensagem] = useState(false);
+  const [kmTotal, setKmTotal] = useState(0);
+  // novo estado para controlar a exibição da mensagem
 
   function handleKmChange(event: React.ChangeEvent<HTMLInputElement>) {
     const kmValue = parseFloat(event.target.value);
     setKm(kmValue);
+  }
+  function adicionarValor(valor: number, descricao: string) {
+    const novaData = new Date().toLocaleString();
+    const tipoEntrega = valoresRegistrados.length + 1;
+    const novoValor = {
+      data: novaData,
+      valor: valor,
+      km: km,
+      descricao: descricao,
+      tipoEntrega: tipoEntrega,
+    };
+    setValorTotal((prevValorTotal) => prevValorTotal + valor);
+    setValoresRegistrados((prevValoresRegistrados) => [
+      ...prevValoresRegistrados,
+      novoValor,
+    ]);
+    if (descricao === "Retrabalho") {
+      // verifica se a descrição é "Retrabalho"
+      setExibirMensagem(true); // define o estado para exibir a mensagem
+    }
   }
 
   useEffect(() => {
@@ -42,22 +65,13 @@ function Home() {
     localStorage.setItem("valorTotal", String(valorTotal));
   }, [valoresRegistrados, valorTotal]);
 
-  function adicionarValor(valor: number, descricao: string) {
-    const novaData = new Date().toLocaleString();
-    const tipoEntrega = valoresRegistrados.length + 1;
-    const novoValor = {
-      data: novaData,
-      valor: valor,
-      km: km,
-      descricao: descricao,
-      tipoEntrega: tipoEntrega,
-    };
-    setValorTotal((prevValorTotal) => prevValorTotal + valor);
-    setValoresRegistrados((prevValoresRegistrados) => [
-      ...prevValoresRegistrados,
-      novoValor,
-    ]);
-  }
+  useEffect(() => {
+    const kmRegistrados = valoresRegistrados.reduce(
+      (total, valor) => total + valor.km,
+      0
+    );
+    setKmTotal(kmRegistrados);
+  }, [valoresRegistrados]);
 
   function apagarValor(index: number) {
     const valorApagado = valoresRegistrados[index].valor;
@@ -89,19 +103,29 @@ function Home() {
   const scrollTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+  useEffect(() => {
+    const kmRegistrados = valoresRegistrados.reduce(
+      (total, valor) => total + valor.km,
+      0
+    );
+    setKmTotal(kmRegistrados);
+  }, [valoresRegistrados]);
 
   return (
     <>
       <div className="container background-whatsapp">
+        <Link to="/">
+          <button>Voltar para a Página Principal</button>
+        </Link>
         <h1>Minhas entregas</h1>
         <h3>
           Valor Total:{" "}
           <span className="destaque">R$ {valorTotal.toFixed(2)}</span>
         </h3>
+        <h3>
+          Km Total: <span className="destaque">{kmTotal.toFixed(1)} km</span>
+        </h3>
         <hr />
-        <Link to="/historico">
-          <button onClick={() => finalizarDia()}>Ver Histórico</button>
-        </Link>
         <div>
           <h4>Neste campo coloque o Km de 1 ou 2 pedidos</h4>
           <p>Ex: 1 pedido 3,5 km | 2 pedidos 3,5 + 3,5 = 7 km</p>
@@ -126,13 +150,14 @@ function Home() {
         <button onClick={() => adicionarValor(8.5, "Retrabalho")}>
           <span>Retrabalho</span>
         </button>
+
         <div>
           {valoresRegistrados.map((valor, index) => (
             <div key={index}>
               <p>
                 {valor.data} |{" "}
                 <span className="valor">{`R$ ${valor.valor.toFixed(1)}`}</span>{" "}
-                | Km: {valor.km}
+                | Km: {valor.km} | {valor.descricao}
               </p>
               <button onClick={() => apagarValor(index)}>Apagar</button>
             </div>
