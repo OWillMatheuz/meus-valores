@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import "./Home.css";
 import { Link } from "react-router-dom";
 import React from "react";
-
 interface ValorRegistrado {
   data: string;
   tipoEntrega: number;
@@ -11,7 +10,9 @@ interface ValorRegistrado {
   descricao: string;
 }
 
-function Home() {
+function Home(props: { atualizarValorTotal: (novoValorTotal: number) => void }) {
+  const [historico, setHistorico] = useState<number[]>([]);
+  const [valorAtual, setValorAtual] = useState(0);
   const [valorTotal, setValorTotal] = useState(0);
   const [valoresRegistrados, setValoresRegistrados] = useState<
     ValorRegistrado[]
@@ -19,7 +20,6 @@ function Home() {
   const [km, setKm] = useState(0);
   const [exibirMensagem, setExibirMensagem] = useState(false);
   const [kmTotal, setKmTotal] = useState(0);
-  const [scrollPosition, setScrollPosition] = useState(0);
   // novo estado para controlar a exibição da mensagem
 
   function handleKmChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -112,22 +112,14 @@ function Home() {
     setKmTotal(kmRegistrados);
   }, [valoresRegistrados]);
 
-  useEffect(() => {
-    localStorage.setItem("scrollPosition", String(window.pageYOffset));
-  }, []);
-  useEffect(() => {
-    const storedScrollPosition = localStorage.getItem("scrollPosition");
-    if (storedScrollPosition) {
-      window.scrollTo({ top: Number(storedScrollPosition), behavior: "smooth" });
-      setScrollPosition(Number(storedScrollPosition));
-    }
-  }, []);
-
+  function atualizarValorTotal(valor: number) {
+    setValorTotal(valorTotal + valor);
+  }
 
   return (
     <>
       <div className="container background-whatsapp">
-        <Link to="/">
+        <Link to="/" >
           <button>Voltar para a Página Principal</button>
         </Link>
         <h1>Minhas entregas</h1>
