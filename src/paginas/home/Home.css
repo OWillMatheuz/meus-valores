@@ -98,6 +98,14 @@ svg {
   color: rgb(33, 33, 84);
 }
 
+.mensagem-cadastro-sucesso {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  text-align: center;
+}
 
 
 

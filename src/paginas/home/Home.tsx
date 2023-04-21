@@ -19,6 +19,7 @@ function Home() {
   const [km, setKm] = useState(0);
   const [exibirMensagem, setExibirMensagem] = useState(false);
   const [kmTotal, setKmTotal] = useState(0);
+  const [scrollPosition, setScrollPosition] = useState(0);
   // novo estado para controlar a exibição da mensagem
 
   function handleKmChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -110,6 +111,18 @@ function Home() {
     );
     setKmTotal(kmRegistrados);
   }, [valoresRegistrados]);
+
+  useEffect(() => {
+    localStorage.setItem("scrollPosition", String(window.pageYOffset));
+  }, []);
+  useEffect(() => {
+    const storedScrollPosition = localStorage.getItem("scrollPosition");
+    if (storedScrollPosition) {
+      window.scrollTo({ top: Number(storedScrollPosition), behavior: "smooth" });
+      setScrollPosition(Number(storedScrollPosition));
+    }
+  }, []);
+
 
   return (
     <>
