@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./Historico.css";
 
 interface ValorRegistrado {
+  id: number;
   descricao: string;
   km: string;
   valor: string;
@@ -74,53 +75,116 @@ function Historico() {
     setKmTotal(kmRegistrados);
   }, [valoresRegistrados]);
 
+  const entregas: { [key: string]: number } = {};
+  const handleValorRegistrado = (valorRegistrado: ValorRegistrado) => {
+    const novosValoresRegistrados = [...valoresRegistrados, valorRegistrado];
+    setValoresRegistrados(novosValoresRegistrados);
+    saveToLocalStorage(novosValoresRegistrados);
+
+    if (!entregas[valorRegistrado.tipoEntrega]) {
+      entregas[valorRegistrado.tipoEntrega] = 0;
+    }
+
+    entregas[valorRegistrado.tipoEntrega] += Number(valorRegistrado.valor);
+  };
+  const addValorRegistrado = (valorRegistrado: ValorRegistrado) => {
+    const novosValoresRegistrados = [...valoresRegistrados, valorRegistrado];
+    saveToLocalStorage(novosValoresRegistrados);
+  };
+  const getTotaisEntrega = () => {
+    const totais: { [entrega: string]: number } = {};
+    valoresRegistrados.forEach((valor) => {
+      const entrega = valor.tipoEntrega;
+      const valorEntrega = Number(valor.valor);
+      totais[entrega] = (totais[entrega] ?? 0) + valorEntrega;
+    });
+    return totais;
+  };
+  const handleDelete = (index: number) => {
+    const updatedValoresRegistrados = [...valoresRegistrados];
+    updatedValoresRegistrados.splice(index, 1);
+    setValoresRegistrados(updatedValoresRegistrados);
+    setCurrentKeyIndex(currentKeyIndex + 1);
+    saveToLocalStorage(updatedValoresRegistrados);
+  };
+  
+
+  const [currentKeyIndex, setCurrentKeyIndex] = useState<number>(0);
+
+  /* total de entregas*/
+  const getTotalEntregas = () => {
+    const entregas: string[] = [];
+    for (let i = 0; i < valoresRegistrados.length; i++) {
+      if (!entregas.includes(valoresRegistrados[i].tipoEntrega)) {
+        entregas.push(valoresRegistrados[i].tipoEntrega);
+      }
+    }
+    return entregas.length;
+  };
+
   return (
     <>
-      <div className="container background-whatsapp">
-        <Link to="/">
-          <button>Voltar para a Página Principal</button>
-        </Link>
-        <h1>Histórico de entregas</h1>
-        <div className="form-group">
-          <label htmlFor="total-valor">Total de valor: </label>
-          <span id="total-valor">{getTotalValor()}</span>
-        </div>
-        <div className="form-group">
-          <label htmlFor="total-km">Total de km: </label>
-          <span id="total-km">{getTotalKm()}</span>
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="date-picker">Selecione uma data: </label>
-          <input
-            type="date"
-            id="date-picker"
-            name="date-picker"
-            value={selectedDate}
-            onChange={handleDateChange}
-          />
-        </div>
-        <table>
-          <thead>
-            <tr>
-              <th>Valor</th>
-              <th>Km</th>
-              <th>Data</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredValoresRegistrados.map((valor, index) => (
-              <tr key={index}>
-                <td>{valor.descricao}</td>
-                <td>{valor.km}</td>
-                <td>{valor.data}</td>
+      <div className="bg-svg">
+        <div className="container background-whatsapp">
+          <Link to="/">
+            <button>Voltar para a Página Principal</button>
+          </Link>
+          <h1>Histórico de entregas</h1>
+          {Object.entries(getTotaisEntrega).map(([entrega, total]) => (
+            <div key={entrega} className="form-group">
+              <label htmlFor={`total-valor-${entrega}`}>
+                Total de {entrega}:{" "}
+              </label>
+              <span id={`total-valor-${entrega}`}>{total.toFixed(2)}</span>
+            </div>
+          ))}
+          <div className="form-group">
+            <label htmlFor="total-valor">Total de valor: </label>
+            <span id="total-valor">{getTotalValor()}</span>
+          </div>
+          <div className="form-group">
+            <label htmlFor="total-km">Total de km: </label>
+            <span id="total-km">{getTotalKm()}</span>
+          </div>
+          <div className="form-group">
+            <label htmlFor="total-entregas">Total de entregas: </label>
+            <span id="total-entregas">{getTotalEntregas()}</span>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Valor</th>
+                <th>Km</th>
+                <th>Data</th>
+                <th>Entrega</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-        <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-          <i className="fas fa-chevron-up">Voltar ao topo</i>
-        </button>
+            </thead>
+            <tbody>
+              {filteredValoresRegistrados.map((valor, index) => (
+                <tr key={index}>
+                  <td>{valor.descricao}</td>
+                  <td>{valor.km}</td>
+                  <td>{valor.data}</td>
+                  <td>{valor.tipoEntrega}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
+            <i className="fas fa-chevron-up">Voltar ao topo</i>
+          </button>
+        </div>
+        <div className="bg-svg-bottom">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path
+              fill="#ff5500"
+              fill-opacity="0.8"
+              d="M0,96L480,160L960,32L1440,288L1440,320L960,320L480,320L0,320Z"
+            ></path>
+          </svg>
+        </div>
       </div>
     </>
   );

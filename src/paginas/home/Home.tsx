@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./Home.css";
 import { Link } from "react-router-dom";
 import React from "react";
+
 interface ValorRegistrado {
   data: string;
   tipoEntrega: number;
@@ -28,6 +29,7 @@ function Home(props: { atualizarValorTotal: (novoValorTotal: number) => void }) 
   }
   function adicionarValor(valor: number, descricao: string) {
     const novaData = new Date().toLocaleString();
+    setMensagem (`Adicionado com sucesso: ${descricao} (Km: ${km})`);
     const tipoEntrega = valoresRegistrados.length + 1;
     const novoValor = {
       data: novaData,
@@ -46,6 +48,7 @@ function Home(props: { atualizarValorTotal: (novoValorTotal: number) => void }) 
       setExibirMensagem(true); // define o estado para exibir a mensagem
     }
   }
+  
 
   useEffect(() => {
     const storedValores = localStorage.getItem("valoresRegistrados");
@@ -115,9 +118,13 @@ function Home(props: { atualizarValorTotal: (novoValorTotal: number) => void }) 
   function atualizarValorTotal(valor: number) {
     setValorTotal(valorTotal + valor);
   }
+  
+  const [mensagem, setMensagem] = useState('');
+
 
   return (
     <>
+    <div className="bg-svg">
       <div className="container background-whatsapp">
         <Link to="/" >
           <button>Voltar para a Página Principal</button>
@@ -146,15 +153,18 @@ function Home(props: { atualizarValorTotal: (novoValorTotal: number) => void }) 
             onChange={handleKmChange}
           />
         </div>
-        <button onClick={() => adicionarValor(8.5, "Valor de R$ 8,50")}>
-          <span>R$ 8,50</span>
-        </button>
-        <button onClick={() => adicionarValor(15.5, "Valor de R$ 15,50")}>
-          <span>R$ 15,50</span>
-        </button>
-        <button onClick={() => adicionarValor(8.5, "Retrabalho")}>
-          <span>Retrabalho</span>
-        </button>
+        <div>
+      {mensagem && <p>{mensagem}</p>}
+      <button onClick={() => adicionarValor(8.5, "Valor de R$ 8,50")}>
+        <span>R$ 8,50</span>
+      </button>
+      <button onClick={() => adicionarValor(15.5, "Valor de R$ 15,50")}>
+        <span>R$ 15,50</span>
+      </button>
+      <button onClick={() => adicionarValor(8.5, "Retrabalho")}>
+        <span>Retrabalho</span>
+      </button>
+    </div>
 
         <div>
           {valoresRegistrados.map((valor, index) => (
@@ -171,6 +181,7 @@ function Home(props: { atualizarValorTotal: (novoValorTotal: number) => void }) 
         <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
           <i className="fas fa-chevron-up">Voltar ao topo</i>
         </button>
+      </div>
       </div>
     </>
   );

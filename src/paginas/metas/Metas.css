@@ -6,14 +6,13 @@
   margin: 0 auto;
   padding: 20px;
   background-color: #fff9db;
-  color: #333;
+  color: #6a0dad; /* alterado para cor roxa */
   border: 1px solid #f9d957;
   border-radius: 5px;
-  max-width: 500px; /* defina a largura máxima que deseja para o contêiner */
-  width: 100%; /* faz o contêiner ocupar 100% da largura do elemento pai */
-  box-sizing: border-box; /* evita que o padding e borda ultrapassem a largura máxima do contêiner */
+  max-width: 500px;
+  width: 100%;
+  box-sizing: border-box;
 }
-
 
 .metas-container h1 {
   font-size: 24px;
@@ -32,18 +31,22 @@
 }
 
 .metas-container button {
+  display: inline-block;
   padding: 10px;
   font-size: 16px;
   border-radius: 5px;
   border: none;
-  background-color: #ffc107;
-  color: #fff;
+  background-color: #ffba00; /* alterado para cor laranja */
+  color: #6a0dad; /* alterado para cor roxa */
   cursor: pointer;
   margin: 0 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
 }
 
 .metas-container button:hover {
-  background-color: #ffa000;
+  background-color: #ffc600; /* alterado para cor laranja mais clara */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .metas-container ul {
@@ -61,21 +64,24 @@
 
 .metas-container .destaque {
   font-weight: bold;
-  color: #ffc107;
+  color: #ffba00; /* alterado para cor laranja */
   margin-left: 5px;
 }
 
+.btn-metas {
+  background-color: #ffba00;
+  color: #6a0dad; /* alterado para cor roxa */
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
+}
 
-.btn-metas{
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .btn:hover {
-    background-color: #0069d9;
-  }
+.btn-metas:hover {
+  background-color: #ffc600; /* alterado para cor laranja mais clara */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}

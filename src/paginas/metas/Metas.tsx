@@ -87,10 +87,11 @@ function Metas() {
   const metaRestante = metaTotal - valorTotal;
 
   return (
+    <div className="bg-svg">
     <div className="metas-container">
       <div>
         <Link to="/registrar" className="btn-metas">
-          Voltar para a página inicial
+          Voltar para registros
         </Link>
       </div>
       <h3>
@@ -119,6 +120,10 @@ function Metas() {
           </li>
         ))}
       </ul>
+    </div>
+    <div className="bg-svg-bottom">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ff5500" fill-opacity="0.8" d="M0,96L480,160L960,32L1440,288L1440,320L960,320L480,320L0,320Z"></path></svg>
+</div>
     </div>
   );
 }

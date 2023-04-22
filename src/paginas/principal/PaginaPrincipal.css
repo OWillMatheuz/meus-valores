@@ -6,12 +6,14 @@
     font-size: 3em;
     text-align: center;
     margin-top: 50px;
+    color:#bf6600;
   }
   
   .subtitulo {
     font-size: 2em;
     text-align: center;
     margin-top: 30px;
+    color:#bf6600;
   }
   
   .botoes {
@@ -47,5 +49,68 @@
     margin-right: 10px;
   }
   a {
-    text-decoration: none;
+  text-decoration: none;
+}
+.bg-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'><path fill='%235000ca' fill-opacity='0.8' d='M0,288L480,288L960,224L1440,96L1440,0L960,0L480,0L0,0Z'></path></svg>");
+  background-size: cover;
+}
+
+svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.bg-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.bg-svg svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.botoes a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.botoes a img {
+  width: 64px;
+  height: 64px;
+}
+
+.botoes a span {
+  font-size: 14px;
+  margin-top: 5px;
+  text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .botoes a img {
+    width: 40px;
+    height: 40px;
   }
+  
+  .botoes a span {
+    font-size: 12px;
+  }
+}
+
+

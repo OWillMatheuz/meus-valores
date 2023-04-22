@@ -6,7 +6,7 @@ body {
 /* Estilizando os botões */
 button {
   background-color: #ffba00;
-  color: #fff;
+  color: #6a0dad; /* Cor do texto roxo */
   border: none;
   padding: 10px 20px;
   font-size: 16px;
@@ -95,10 +95,10 @@ svg {
 .valor {
   font-weight: bold;
   font-size: 1.2em;
-  color: rgb(33, 33, 84);
+  color: #6a0dad; /* Cor do texto roxo */
 }
 
-
-
-
-
+.success {
+  color: green;
+  font-weight: bold;
+}
