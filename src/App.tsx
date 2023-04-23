@@ -5,7 +5,7 @@ import './App.css';
 import Historico from './paginas/historico/Historico';
 import PaginaPrincipal from './paginas/principal/PaginaPrincipal';
 import Metas from './paginas/metas/Metas';
-
+import TrocaDeOleoForm from './paginas/trocadeoleo/TrocaDeOleoForm'
 
 function App() {
   const [valorTotal, setValorTotal] = useState(0);
@@ -22,8 +22,9 @@ function App() {
         <Route path="/registrar" element={<Home atualizarValorTotal={atualizarValorTotal} />} />
         <Route path="/historico" element={<Historico />} />
         <Route path="/metas" element={<Metas />} />
-
+        <Route path="/km" element={<TrocaDeOleoForm/>} />
       </Routes>
+      
     </BrowserRouter>
   );
 }

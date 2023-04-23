@@ -19,20 +19,40 @@ function PaginaPrincipal() {
           <div className="row">
             <div className="col-sm-4 col-md-4 col-lg-4">
               <Link to="/registrar">
-                <img src="https://tinypic.host/images/2023/04/22/icons8-editar-propriedade-64.png" alt="Icone 1" className="icone" />
+                <img
+                  src="https://tinypic.host/images/2023/04/22/icons8-editar-propriedade-64.png"
+                  alt="Icone 1"
+                  className="icone"
+                />
                 <p className="texto-botao">Registrar valores e km</p>
               </Link>
             </div>
             <div className="col-sm-4 col-md-4 col-lg-4">
               <Link to="/historico">
-                <img src="https://tinypic.host/images/2023/04/22/icons8-historico-de-encomendas-100.png" alt="Icone 2" className="icone" />
+                <img
+                  src="https://tinypic.host/images/2023/04/22/icons8-historico-de-encomendas-100.png"
+                  alt="Icone 2"
+                  className="icone"
+                />
                 <p className="texto-botao">Ver histórico</p>
               </Link>
             </div>
             <div className="col-sm-4 col-md-4 col-lg-4">
               <Link to="/metas">
-                <img src="https://tinypic.host/images/2023/04/22/icons8-objetivo-100.png" alt="Icone 3" className="icone" />
+                <img
+                  src="https://tinypic.host/images/2023/04/22/icons8-objetivo-100.png"
+                  alt="Icone 3"
+                  className="icone"
+                />
                 <p className="texto-botao">Definir metas</p>
+              </Link>
+              <Link to="/km">
+                <img
+                  src="https://tinypic.host/images/2023/04/22/icons8-objetivo-100.png"
+                  alt="Icone 3"
+                  className="icone"
+                />
+                <p className="texto-botao">Troca de óleo</p>
               </Link>
             </div>
           </div>

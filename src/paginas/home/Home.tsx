@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./Home.css";
 import { Link } from "react-router-dom";
 import React from "react";
-
+import datetime from "react"
 interface ValorRegistrado {
   data: string;
   tipoEntrega: number;
@@ -48,7 +48,6 @@ function Home(props: { atualizarValorTotal: (novoValorTotal: number) => void }) 
       setExibirMensagem(true); // define o estado para exibir a mensagem
     }
   }
-  
 
   useEffect(() => {
     const storedValores = localStorage.getItem("valoresRegistrados");
@@ -121,8 +120,27 @@ function Home(props: { atualizarValorTotal: (novoValorTotal: number) => void }) 
   
   const [mensagem, setMensagem] = useState('');
 
+  /* deletar todos os registros da minha lista */
+  function handleDeleteAll() {
+    confirmDelete();
+  }
+  
+  function confirmDelete() {
+    const response = window.confirm("Tem certeza que deseja deletar tudo?");
+    if (response == true) {
+      setValorTotal(0);
+      setValoresRegistrados([]);
+      localStorage.removeItem("valorTotal");
+      localStorage.removeItem("valoresRegistrados");
+      alert("Tudo foi deletado com sucesso!");
+    } else {
+      alert("Operação cancelada.");
+    }
+  }
+  
 
   return (
+    
     <>
     <div className="bg-svg">
       <div className="container background-whatsapp">
@@ -130,6 +148,7 @@ function Home(props: { atualizarValorTotal: (novoValorTotal: number) => void }) 
           <button>Voltar para a Página Principal</button>
         </Link>
         <h1>Minhas entregas</h1>
+  
         <h3>
           Valor Total:{" "}
           <span className="destaque">R$ {valorTotal.toFixed(2)}</span>
@@ -178,6 +197,7 @@ function Home(props: { atualizarValorTotal: (novoValorTotal: number) => void }) 
             </div>
           ))}
         </div>
+        <button onClick={handleDeleteAll} style={{ marginRight: '10px' }}>Deletar tudo</button>
         <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
           <i className="fas fa-chevron-up">Voltar ao topo</i>
         </button>
