@@ -147,7 +147,7 @@ function Historico() {
             <span id="total-km">{getTotalKm()}</span>
           </div>
           <div className="form-group">
-            <label htmlFor="total-entregas">Total de entregas: </label>
+            <label htmlFor="total-entregas">Total de saídas: </label>
             <span id="total-entregas">{getTotalEntregas()}</span>
           </div>
           <table>
