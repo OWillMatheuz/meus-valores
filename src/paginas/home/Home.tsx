@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./Home.css";
 import { Link } from "react-router-dom";
 import React from "react";
-import datetime from "react"
+import datetime from "react";
 interface ValorRegistrado {
   data: string;
   tipoEntrega: number;
@@ -11,7 +11,9 @@ interface ValorRegistrado {
   descricao: string;
 }
 
-function Home(props: { atualizarValorTotal: (novoValorTotal: number) => void }) {
+function Home(props: {
+  atualizarValorTotal: (novoValorTotal: number) => void;
+}) {
   const [historico, setHistorico] = useState<number[]>([]);
   const [valorAtual, setValorAtual] = useState(0);
   const [valorTotal, setValorTotal] = useState(0);
@@ -29,7 +31,7 @@ function Home(props: { atualizarValorTotal: (novoValorTotal: number) => void }) 
   }
   function adicionarValor(valor: number, descricao: string) {
     const novaData = new Date().toLocaleString();
-    setMensagem (`Adicionado com sucesso: ${descricao} (Km: ${km})`);
+    setMensagem(`Adicionado com sucesso: ${descricao} (Km: ${km})`);
     const tipoEntrega = valoresRegistrados.length + 1;
     const novoValor = {
       data: novaData,
@@ -117,14 +119,14 @@ function Home(props: { atualizarValorTotal: (novoValorTotal: number) => void }) 
   function atualizarValorTotal(valor: number) {
     setValorTotal(valorTotal + valor);
   }
-  
-  const [mensagem, setMensagem] = useState('');
+
+  const [mensagem, setMensagem] = useState("");
 
   /* deletar todos os registros da minha lista */
   function handleDeleteAll() {
     confirmDelete();
   }
-  
+
   function confirmDelete() {
     const response = window.confirm("Tem certeza que deseja deletar tudo?");
     if (response == true) {
@@ -137,71 +139,77 @@ function Home(props: { atualizarValorTotal: (novoValorTotal: number) => void }) 
       alert("Operação cancelada.");
     }
   }
-  
 
   return (
-    
     <>
-    <div className="bg-svg">
-      <div className="container background-whatsapp">
-        <Link to="/" >
-          <button>Voltar para a Página Principal</button>
-        </Link>
-        <h1>Minhas entregas</h1>
-  
-        <h3>
-          Valor Total:{" "}
-          <span className="destaque">R$ {valorTotal.toFixed(2)}</span>
-        </h3>
-        <h3>
-          Km Total: <span className="destaque">{kmTotal.toFixed(1)} km</span>
-        </h3>
-        <hr />
-        <div>
-          <h4>Neste campo coloque o Km de 1 ou 2 pedidos</h4>
-          <p>Ex: 1 pedido 3,5 km | 2 pedidos 3,5 + 3,5 = 7 km</p>
-          <p>
-            E depois coloque o valor da entrega para enviar para o relatório
-          </p>
-          <hr />
-          <label htmlFor="km">Km: </label>
-          <input
-            type="number"
-            id="km-input"
-            value={km}
-            onChange={handleKmChange}
-          />
-        </div>
-        <div>
-      {mensagem && <p>{mensagem}</p>}
-      <button onClick={() => adicionarValor(8.5, "Valor de R$ 8,50")}>
-        <span>R$ 8,50</span>
-      </button>
-      <button onClick={() => adicionarValor(15.5, "Valor de R$ 15,50")}>
-        <span>R$ 15,50</span>
-      </button>
-      <button onClick={() => adicionarValor(8.5, "Retrabalho")}>
-        <span>Retrabalho</span>
-      </button>
-    </div>
+      <div className="bg-svg">
+        <div className="container background-whatsapp">
+          <Link to="/">
+            <button>Voltar para a Página Principal</button>
+          </Link>
+          <h1>Minhas entregas</h1>
 
-        <div>
-          {valoresRegistrados.map((valor, index) => (
-            <div key={index}>
-              <p>
-                {valor.data} |{" "}
-                <span className="valor">{`R$ ${valor.valor.toFixed(1)}`}</span>{" "}
-                | Km: {valor.km} | {valor.descricao}
-              </p>
-              <button onClick={() => apagarValor(index)}>Apagar</button>
-            </div>
-          ))}
+          <h3>
+            Valor Total:{" "}
+            <span className="destaque">R$ {valorTotal.toFixed(2)}</span>
+          </h3>
+          <h3>
+            Km Total: <span className="destaque">{kmTotal.toFixed(1)} km</span>
+          </h3>
+          <hr />
+          <div>
+            <h4>Neste campo coloque o Km de 1 ou 2 pedidos</h4>
+            <p>Ex: 1 pedido 3,5 km | 2 pedidos 3,5 + 3,5 = 7 km</p>
+            <p>
+              E depois coloque o valor da entrega para enviar para o relatório
+            </p>
+            <hr />
+            <label htmlFor="km">Km: </label>
+            <input
+              type="number"
+              id="km-input"
+              value={km}
+              onChange={handleKmChange}
+              pattern="[0-9]*[.,]?[0-9]*"
+              inputMode="decimal"
+            />
+          </div>
+          <div>
+            {mensagem && <p>{mensagem}</p>}
+            <button onClick={() => adicionarValor(8.5, "Valor de R$ 8,50")}>
+              <span>R$ 8,50</span>
+            </button>
+            <button onClick={() => adicionarValor(15.5, "Valor de R$ 15,50")}>
+              <span>R$ 15,50</span>
+            </button>
+            <button onClick={() => adicionarValor(8.5, "Retrabalho")}>
+              <span>Retrabalho</span>
+            </button>
+          </div>
+
+          <div>
+            {valoresRegistrados.map((valor, index) => (
+              <div key={index}>
+                <p>
+                  {valor.data} |{" "}
+                  <span className="valor">{`R$ ${valor.valor.toFixed(
+                    1
+                  )}`}</span>{" "}
+                  | Km: {valor.km} | {valor.descricao}
+                </p>
+                <button onClick={() => apagarValor(index)}>Apagar</button>
+              </div>
+            ))}
+          </div>
+          <button onClick={handleDeleteAll} style={{ marginRight: "10px" }}>
+            Deletar tudo
+          </button>
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
+            <i className="fas fa-chevron-up">Voltar ao topo</i>
+          </button>
         </div>
-        <button onClick={handleDeleteAll} style={{ marginRight: '10px' }}>Deletar tudo</button>
-        <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-          <i className="fas fa-chevron-up">Voltar ao topo</i>
-        </button>
-      </div>
       </div>
     </>
   );

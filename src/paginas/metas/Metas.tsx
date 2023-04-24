@@ -88,42 +88,54 @@ function Metas() {
 
   return (
     <div className="bg-svg">
-    <div className="metas-container">
-      <div>
-        <Link to="/registrar" className="btn-metas">
-          Voltar para registros
-        </Link>
+      <div className="metas-container">
+        <div>
+          <Link to="/registrar" className="btn-metas">
+            Voltar para registros
+          </Link>
+        </div>
+        <h3>
+          Suas Entregas:{" "}
+          <span className="destaque">R$ {valorTotal.toFixed(2)}</span>
+        </h3>
+        <h3>
+          Metas: <span className="destaque">R$ {metaTotal.toFixed(2)}</span>
+        </h3>
+        <h3>
+          Falta pouco motoca:{" "}
+          <span className="destaque">R$ {metaRestante.toFixed(2)}</span>
+        </h3>
+        <hr />
+        <p>Insira sua meta:</p>
+        <input
+          type="number"
+          pattern="[0-9]*[.,]?[0-9]*"
+          inputMode="decimal"
+          value={meta}
+          onChange={handleMetaChange}
+        />
+        <button onClick={cadastrarMeta}>Cadastrar</button>
+        <button onClick={atualizarMeta}>Atualizar</button>
+        <p>Sua meta atual é {metaTotal.toFixed(2)}</p>
+        <h2>Histórico de metas cadastradas:</h2>
+        <ul>
+          {metas.map((meta) => (
+            <li key={meta.id}>
+              Meta: {meta.meta}
+              <button onClick={() => deletarMeta(meta.id)}>Deletar</button>
+            </li>
+          ))}
+        </ul>
       </div>
-      <h3>
-        Suas Entregas:{" "}
-        <span className="destaque">R$ {valorTotal.toFixed(2)}</span>
-      </h3>
-      <h3>
-        Metas: <span className="destaque">R$ {metaTotal.toFixed(2)}</span>
-      </h3>
-      <h3>
-        Falta pouco motoca:{" "}
-        <span className="destaque">R$ {metaRestante.toFixed(2)}</span>
-      </h3>
-      <hr />
-      <p>Insira sua meta:</p>
-      <input type="number" value={meta} onChange={handleMetaChange} />
-      <button onClick={cadastrarMeta}>Cadastrar</button>
-      <button onClick={atualizarMeta}>Atualizar</button>
-      <p>Sua meta atual é {metaTotal.toFixed(2)}</p>
-      <h2>Histórico de metas cadastradas:</h2>
-      <ul>
-        {metas.map((meta) => (
-          <li key={meta.id}>
-            Meta: {meta.meta}
-            <button onClick={() => deletarMeta(meta.id)}>Deletar</button>
-          </li>
-        ))}
-      </ul>
-    </div>
-    <div className="bg-svg-bottom">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ff5500" fill-opacity="0.8" d="M0,96L480,160L960,32L1440,288L1440,320L960,320L480,320L0,320Z"></path></svg>
-</div>
+      <div className="bg-svg-bottom">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+          <path
+            fill="#ff5500"
+            fill-opacity="0.8"
+            d="M0,96L480,160L960,32L1440,288L1440,320L960,320L480,320L0,320Z"
+          ></path>
+        </svg>
+      </div>
     </div>
   );
 }
