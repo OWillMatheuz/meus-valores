@@ -87,13 +87,15 @@ function Metas() {
   const metaRestante = metaTotal - valorTotal;
 
   return (
-    <div className="bg-svg">
+    <>
       <div className="metas-container">
         <div>
           <Link to="/registrar" className="btn-metas">
             Voltar para registros
           </Link>
         </div>
+        <hr />
+        <div>
         <h3>
           Suas Entregas:{" "}
           <span className="destaque">R$ {valorTotal.toFixed(2)}</span>
@@ -105,6 +107,8 @@ function Metas() {
           Falta pouco motoca:{" "}
           <span className="destaque">R$ {metaRestante.toFixed(2)}</span>
         </h3>
+        </div>
+        
         <hr />
         <p>Insira sua meta:</p>
         <input
@@ -122,25 +126,21 @@ function Metas() {
           {metas.map((meta) => (
             <li key={meta.id}>
               Meta: {meta.meta}
-              <button onClick={() => deletarMeta(meta.id)}>Deletar</button>
+              <button
+                className="btn-deletar"
+                onClick={() => deletarMeta(meta.id)}
+              >
+                Deletar
+              </button>
             </li>
           ))}
         </ul>
       </div>
-      <div className="bg-svg-bottom">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-          <path
-            fill="#ff5500"
-            fill-opacity="0.8"
-            d="M0,96L480,160L960,32L1440,288L1440,320L960,320L480,320L0,320Z"
-          ></path>
-        </svg>
-      </div>
-    </div>
+    </>
   );
 }
-
 export default Metas;
 function setMetaTotal(metaTotalCalculado: number) {
   throw new Error("Function not implemented.");
 }
+
