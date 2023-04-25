@@ -26,22 +26,26 @@ function Historico() {
   /* atualizar a pagina e nao mudar  */
   useEffect(() => {
     const handleScroll = () => {
-      setScrollPosition(window.scrollY);
+      window.sessionStorage.setItem("scrollPosition", window.pageYOffset.toString());
     };
+
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   useEffect(() => {
-    window.sessionStorage.setItem("scrollPosition", String(scrollPosition));
-  }, [scrollPosition]);
-  useEffect(() => {
-    const storedScrollPosition = window.sessionStorage.getItem("scrollPosition");
-    if (storedScrollPosition) {
-      window.scrollTo(0, Number(storedScrollPosition));
+    const valoresRegistrados = localStorage.getItem("valoresRegistrados");
+    if (valoresRegistrados) {
+      setValoresRegistrados(JSON.parse(valoresRegistrados));
+    }
+
+    // Restaurar a posição da página quando a página for carregada novamente
+    const scrollPosition = window.sessionStorage.getItem("scrollPosition");
+    if (scrollPosition) {
+      window.scrollTo(0, parseInt(scrollPosition));
     }
   }, []);
+
       /**/ 
   
 
