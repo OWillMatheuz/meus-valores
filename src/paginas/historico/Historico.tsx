@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./Historico.css";
 
@@ -21,6 +21,21 @@ function Historico() {
   >([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [kmTotal, setKmTotal] = useState<number>(0);
+  const rootRef = useRef<HTMLDivElement>(null);
+  
+  /* atualizar e nao sair */
+  useEffect(() => {
+    if (rootRef.current) {
+      const scrollY = sessionStorage.getItem("scrollY");
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY));
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    sessionStorage.setItem("scrollY", window.scrollY.toString());
+  }, []);
 
   useEffect(() => {
     const valoresRegistrados = localStorage.getItem("valoresRegistrados");
