@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Historico.css";
 
@@ -21,21 +21,29 @@ function Historico() {
   >([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [kmTotal, setKmTotal] = useState<number>(0);
-  const rootRef = useRef<HTMLDivElement>(null);
-  
-  /* atualizar e nao sair */
+  const [scrollPosition, setScrollPosition] = useState<number>(0);
+
+  /* atualizar a pagina e nao mudar  */
   useEffect(() => {
-    if (rootRef.current) {
-      const scrollY = sessionStorage.getItem("scrollY");
-      if (scrollY) {
-        window.scrollTo(0, parseInt(scrollY));
-      }
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+  useEffect(() => {
+    window.sessionStorage.setItem("scrollPosition", String(scrollPosition));
+  }, [scrollPosition]);
+  useEffect(() => {
+    const storedScrollPosition = window.sessionStorage.getItem("scrollPosition");
+    if (storedScrollPosition) {
+      window.scrollTo(0, Number(storedScrollPosition));
     }
   }, []);
-
-  useEffect(() => {
-    sessionStorage.setItem("scrollY", window.scrollY.toString());
-  }, []);
+      /**/ 
+  
 
   useEffect(() => {
     const valoresRegistrados = localStorage.getItem("valoresRegistrados");
