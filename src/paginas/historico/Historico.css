@@ -113,14 +113,14 @@
 }
 
 .botao-azul-escuro {
-  background-color: white;
-  color: #1e2a31;
+  background-color: #1e2a31;
+  color: white;
   border: 1px solid #1e2a31;
 }
 
 .botao-azul-escuro:hover {
-  background-color: #1e2a31;
-  color: white;
+  background-color: white;
+  color: #1e2a31;
 }
 
 /*  botao voltar ao topo */
@@ -147,4 +147,43 @@
 
 .botao-voltar-ao-topo i {
   margin-right: 8px;
+}
+
+
+.form-group span {
+  display: inline-block;
+  border: 2px solid white;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 30px;
+}
+.form-group label {
+  color: white;
+}
+
+.form-group span {
+  display: inline-block;
+  border: 2px solid white;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+}
+
+.form-group input {
+  background-color: #fff;
+  color: white;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  padding: .375rem .75rem;
+  font-size: 4rem !important;
+  line-height: 1.5;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.form-group input:focus {
+  outline: 0;
+  box-shadow: 0 0 0 .2rem white !important;
+  border-color: white !important;
 }

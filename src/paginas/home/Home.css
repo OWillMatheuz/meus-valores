@@ -41,6 +41,58 @@ button:hover {
 
 @media only screen and (max-width: 768px) {
   .container {
+    max-width: 90%;
+    margin: 0 auto;
     text-align: left;
   }
+  
+  .destaque {
+    font-size: 1.5rem;
+    padding: 12px;
+    background-color: white;
+  color: #051c33;
+  padding: 5px;
+  border: 1px solid white;
+  border-radius: 5px;
+  margin: 10px 0;
+  width: 100%;
+  box-sizing: border-box;
+  }
+  
+  button {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+  }
+  
+  .input-branco {
+    padding: 8px;
+    font-size: 0.8rem;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .destaque {
+    font-size: 1.2rem;
+    padding: 8px;
+  }
+  
+  button {
+    padding: 6px 12px;
+    font-size: 0.7rem;
+  }
+  
+  .input-branco {
+    padding: 6px;
+    font-size: 0.7rem;
+  }
+}
+.input-branco {
+  background-color: white;
+  color: #051c33;
+  padding: 10px;
+  border: 1px solid white;
+  border-radius: 5px;
+  margin: 10px 0;
+  width: 100%;
+  box-sizing: border-box;
 }

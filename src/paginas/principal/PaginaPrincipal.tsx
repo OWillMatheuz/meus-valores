@@ -50,7 +50,7 @@ function PaginaPrincipal() {
             <div className="col-md-6">
               <Link to="/km" className="botao">
                 <img
-                  src="https://tinypic.host/images/2023/04/22/icons8-objetivo-100.png"
+                  src="https://tinypic.host/images/2023/04/25/icons8-velocimetro-64.png"
                   alt="Icone 4"
                   className="icone"
                 />
