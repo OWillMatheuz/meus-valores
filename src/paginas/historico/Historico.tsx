@@ -177,6 +177,7 @@ function Historico() {
           <label htmlFor="total-entregas">Total de saídas: </label>
           <span id="total-entregas">{getTotalEntregas()}</span>
         </div>
+        <div >
         <table>
           <thead>
             <tr>
@@ -197,6 +198,8 @@ function Historico() {
             ))}
           </tbody>
         </table>
+        </div>
+        
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           className="botao-voltar-ao-topo"

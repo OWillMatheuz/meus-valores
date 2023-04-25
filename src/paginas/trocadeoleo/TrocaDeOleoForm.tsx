@@ -92,12 +92,12 @@ function TrocaDeOleoForm() {
       </form>
       <div className="history-container">
         <h2>Histórico</h2>
+        <hr />
         <ul>
           {calcHistory.map((item, index) => (
             <li key={index}>
-              Data: {item.data} - Km Atual: {item.kmAtual} - Você tem até:{" "}
-              {item.kmProximaTroca} Km pra trocar o óleo <br />
-              Faltam {item.kmFaltantes} Km pra você troca o óleo hein motoca !
+              Data: {item.data} Km Atual: {item.kmAtual} Km | Você tem até:{" "}
+              {item.kmProximaTroca} Km pra trocar o óleo. <br /> <hr /> Faltam {item.kmFaltantes} Km pra você troca o óleo hein motoca !
             </li>
           ))}
         </ul>

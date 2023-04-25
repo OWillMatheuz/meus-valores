@@ -176,3 +176,43 @@ h1, h2, h3 {
     height: 4rem;
   }
 }
+
+.icone-money {
+  display: flex;
+  max-width: 100%;
+  height: auto;
+  width: 150px;
+  height: 150px;
+  padding: 10px;
+  float: left;
+  margin-right: 20px;
+}
+
+
+.titulo-container {
+  display: flex;
+  align-items: center;
+}
+
+.titulo {
+  margin-right: 10px;
+}
+
+
+.titulo-container {
+  display: flex;
+  align-items: center;
+}
+
+.icone-money {
+  height: auto;
+  width: 150px;
+  padding-right: 20px;
+  float: left !important;
+}
+
+.titulo {
+  margin: 0;
+}
+
+

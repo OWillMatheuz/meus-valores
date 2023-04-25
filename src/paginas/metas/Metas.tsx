@@ -98,14 +98,14 @@ function Metas() {
         <div>
         <h3>
           Suas Entregas:{" "}
-          <span className="destaque">R$ {valorTotal.toFixed(2)}</span>
+          <span className="destaque">R${valorTotal.toFixed(2)}</span>
         </h3>
         <h3>
-          Metas: <span className="destaque">R$ {metaTotal.toFixed(2)}</span>
+          Metas: <span className="destaque">R${metaTotal.toFixed(2)}</span>
         </h3>
         <h3>
           Falta pouco motoca:{" "}
-          <span className="destaque">R$ {metaRestante.toFixed(2)}</span>
+          <span className="destaque">R${metaRestante.toFixed(2)}</span>
         </h3>
         </div>
         

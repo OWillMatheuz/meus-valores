@@ -11,17 +11,18 @@
 }
 
 button {
-  background-color: #051c33;
+  background-color: rgb(194, 128, 6);
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 15px !important;
+  border-radius: 8px !important;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
-  padding: 10px 20px;
-  border-radius: 5px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  margin: 10px 5px; /* Define uma margem de 10 pixels na vertical e 5 pixels na horizontal */
+  display: inline-block; /* Define que os botões devem ser exibidos em linha (um ao lado do outro) */
 }
+
 
 button:hover {
   background-color: white;
@@ -47,12 +48,11 @@ button:hover {
   }
   
   .destaque {
-    font-size: 1.5rem;
-    padding: 12px;
-    background-color: white;
+  font-size: 2rem !important;
+  background-color: white;
   color: #051c33;
-  padding: 5px;
-  border: 1px solid white;
+  padding: 2px !important;
+  border: 1rem  white;
   border-radius: 5px;
   margin: 10px 0;
   width: 100%;
@@ -95,4 +95,28 @@ button:hover {
   margin: 10px 0;
   width: 100%;
   box-sizing: border-box;
+}
+
+
+.caixa {
+  border: 1px solid white;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.valor-total {
+  margin-bottom: 10px;
+}
+
+h3 {
+  margin-bottom: 10px;
+}
+
+
+.valor-total {
+  display: block;
+}
+
+.valor-total.oculto {
+  display: none;
 }

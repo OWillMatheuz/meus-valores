@@ -149,13 +149,17 @@ function Home(props: {
           </Link>
           <hr />
           <h1>Minhas entregas</h1>
-          <h3>
-            Valor Total:{" "}
-            <span className="destaque">R$ {valorTotal.toFixed(2)}</span>
-          </h3>
-          <h3>
-            Km Total: <span className="destaque">{kmTotal.toFixed(1)} km</span>
-          </h3>
+          <div className="caixa">
+            <h3>
+              Valor Total:{" "}
+              <span className="destaque">R$ {valorTotal.toFixed(2)}</span>
+            </h3>
+            <h3>
+              Km Total:{" "}
+              <span className="destaque">{kmTotal.toFixed(1)} km</span>
+            </h3>
+          </div>
+
           <hr />
           <div>
             <h4>Neste campo coloque o Km de 1 ou 2 pedidos</h4>
@@ -164,15 +168,17 @@ function Home(props: {
               E depois coloque o valor da entrega para enviar para o relatório
             </p>
             <hr />
-            <label htmlFor="km" className="destaque">Km: </label>
+            <label htmlFor="km" className="destaque">
+              Km:{" "}
+            </label>
             <input
               type="number"
               id="km-input"
+              step="any"
               value={km}
               onChange={handleKmChange}
               pattern="[0-9]*[.,]?[0-9]*"
               inputMode="decimal"
-              className="input-branco"
             />
           </div>
           <div>

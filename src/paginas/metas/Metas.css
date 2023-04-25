@@ -47,7 +47,7 @@
 }
 
 .metas-container button {
-  background-color: #1E2939;
+  background-color: rgb(194, 128, 6);
   border: none;
   border-radius: 5px;
   color: #FFFFFF;
@@ -56,7 +56,10 @@
   font-size: 16px;
   cursor: pointer;
 }
-
+.metas-container button:hover{
+  background-color: white;
+  color:  #1f2d3d;
+}
 .metas-container ul {
   margin-top: 20px;
   list-style: none;
@@ -81,7 +84,7 @@
 
 .btn-metas {
   margin-top: 20px !important;
-  background-color: #1f2d3d;
+  background-color: rgb(194, 128, 6);
   border: 2px solid white;
   color: white;
   padding: 10px 20px;
@@ -120,4 +123,21 @@ input[type="number"] {
     margin-right: 0;
     margin-bottom: 10px;
   }
+}
+
+.btn-deletar{
+  margin-top: 20px !important;
+  background-color: rgb(194, 128, 6) !important;
+  border: 2px solid white;
+  color: #1f2d3d;
+  padding: 10px 20px;
+  margin-right: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-deletar:hover{
+  background-color: white !important;
+  color:  #1f2d3d;
 }

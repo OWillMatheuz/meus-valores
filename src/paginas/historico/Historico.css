@@ -1,8 +1,4 @@
-.background-whatsapp {
-  background-color: #25d366;
-  margin: 0;
-  padding: 30px;
-}
+
 
 .bg-svg {
   background-image: url('https://cdn.pixabay.com/photo/2017/07/18/23/23/user-2517433_1280.png');
@@ -113,7 +109,7 @@
 }
 
 .botao-azul-escuro {
-  background-color: #1e2a31;
+  background-color: rgb(194, 128, 6);
   color: white;
   border: 1px solid #1e2a31;
 }
@@ -126,7 +122,7 @@
 /*  botao voltar ao topo */
 .botao-voltar-ao-topo {
   display: inline-block;
-  background-color: #1e2a31;
+  background-color: rgb(194, 128, 6);
   color: white;
   border: none;
   border-radius: 4px;

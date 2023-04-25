@@ -13,7 +13,10 @@ function PaginaPrincipal() {
     return (
       <>
       <div className="container">
-        <h1 className="titulo">Salve Motoca!</h1>
+      <div className="titulo-container">
+  <h1 className="titulo">Salve Motoca!</h1>
+  <img className="icone-money" src="https://media.giphy.com/media/Qze6gDuxZt48U/giphy.gif" alt="dinheiro"></img>
+</div>
         <h2 className="subtitulo">O que você deseja fazer?</h2>
         <div className="botoes">
           <div className="row">
