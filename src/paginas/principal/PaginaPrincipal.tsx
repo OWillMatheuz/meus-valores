@@ -10,14 +10,19 @@ function PaginaPrincipal() {
     };
   }, []);
 
-    return (
-      <>
+  return (
+    <>
       <div className="container">
-      <div className="titulo-container">
-  <h1 className="titulo">Salve Motoca!</h1>
-  <img className="icone-money" src="https://media.giphy.com/media/Qze6gDuxZt48U/giphy.gif" alt="dinheiro"></img>
-</div>
-        <h2 className="subtitulo">O que você deseja fazer?</h2>
+        <div className="titulo-container">
+          <h1 className="titulo">Salve Motoca!</h1>
+          <img
+            className="icone-money"
+            src="https://media.giphy.com/media/Qze6gDuxZt48U/giphy.gif"
+            alt="dinheiro"
+          ></img>
+        </div>
+        <h3>Dinheiro não cai do céu, então marcha !</h3>
+        <h3 className="subtitulo">O que você deseja fazer?</h3>
         <div className="botoes">
           <div className="row">
             <div className="col-md-6">
@@ -62,9 +67,11 @@ function PaginaPrincipal() {
             </div>
           </div>
         </div>
+       <p>© 2023 Copyright: <br /></p> 
+       <p>Desenvolvido por Willian Matheus</p>
       </div>
-      </>
-    );
-  }
-  
-  export default PaginaPrincipal;
+    </>
+  );
+}
+
+export default PaginaPrincipal;

@@ -177,8 +177,8 @@ function Historico() {
           <label htmlFor="total-entregas">Total de saídas: </label>
           <span id="total-entregas">{getTotalEntregas()}</span>
         </div>
-        <div >
-        <table>
+        <div className="custom-box">
+        <table >
           <thead>
             <tr>
               <th>Valor</th>

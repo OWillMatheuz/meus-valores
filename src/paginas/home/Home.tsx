@@ -149,6 +149,7 @@ function Home(props: {
           </Link>
           <hr />
           <h1>Minhas entregas</h1>
+          
           <div className="caixa">
             <h3>
               Valor Total:{" "}
