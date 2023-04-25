@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
 import Home from './paginas/home/Home';
 import './App.css';
@@ -24,7 +24,6 @@ function App() {
         <Route path="/metas" element={<Metas />} />
         <Route path="/km" element={<TrocaDeOleoForm/>} />
       </Routes>
-      
     </BrowserRouter>
   );
 }
