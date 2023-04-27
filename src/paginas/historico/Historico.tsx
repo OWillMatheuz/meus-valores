@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Historico.css";
+import jsPDF from 'jspdf';
+
 
 interface ValorRegistrado {
   id: number;
@@ -148,6 +150,21 @@ function Historico() {
     return entregas.length;
   };
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+const downloadButton = document.getElementById('download-pdf');
+if (downloadButton) {
+  downloadButton.addEventListener('click', function() {
+    // Crie um novo objeto jsPDF
+    const doc = new jsPDF();
+    // Resto do código...
+  });
+}
+
+
+
+
+
+
   return (
     <>
       <div className="container background-whatsapp">
@@ -199,7 +216,8 @@ function Historico() {
           </tbody>
         </table>
         </div>
-        
+        <button id="download-pdf">Baixar PDF</button>
+
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           className="botao-voltar-ao-topo"

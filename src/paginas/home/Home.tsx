@@ -3,6 +3,8 @@ import "./Home.css";
 import { Link } from "react-router-dom";
 import React from "react";
 import datetime from "react";
+import { ToastContainer, ToastContentProps, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 interface ValorRegistrado {
   data: string;
   tipoEntrega: number;
@@ -29,9 +31,32 @@ function Home(props: {
     const kmValue = parseFloat(event.target.value);
     setKm(kmValue);
   }
+  function mostrarMensagemSucesso(
+    mensagem:
+      | boolean
+      | React.ReactChild
+      | React.ReactFragment
+      | React.ReactPortal
+      | ((props: ToastContentProps<unknown>) => React.ReactNode)
+      | null
+      | undefined
+  ) {
+    toast.success(mensagem, {
+      position: "top-right",
+      autoClose: 4000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  }
   function adicionarValor(valor: number, descricao: string) {
+    setKmTotal(kmTotal + valor);
     const novaData = new Date().toLocaleString();
-    setMensagem(`Adicionado com sucesso: ${descricao} (Km: ${km})`);
+    setMensagem(`Adicionado com sucesso: ${descricao} (${km} Km)`);
+    mostrarMensagemSucesso(`Adicionado com sucesso: ${descricao} (${km} Km)`);
     const tipoEntrega = valoresRegistrados.length + 1;
     const novoValor = {
       data: novaData,
@@ -83,11 +108,10 @@ function Home(props: {
     const valoresRestantes = valoresRegistrados.filter((_, i) => i !== index);
     setValorTotal((prevValorTotal) => prevValorTotal - valorApagado);
     setValoresRegistrados(valoresRestantes);
+    toast.success("Valor apagado com sucesso!");
+    
   }
 
-  function finalizarDia() {
-    // TODO: enviar valores por email
-  }
   const [showScroll, setShowScroll] = useState(false);
 
   const checkScrollTop = () => {
@@ -139,6 +163,7 @@ function Home(props: {
       alert("Operação cancelada.");
     }
   }
+  
 
   return (
     <>
@@ -149,7 +174,7 @@ function Home(props: {
           </Link>
           <hr />
           <h1>Minhas entregas</h1>
-          
+
           <div className="caixa">
             <h3>
               Valor Total:{" "}
@@ -183,7 +208,6 @@ function Home(props: {
             />
           </div>
           <div>
-            {mensagem && <p>{mensagem}</p>}
             <button onClick={() => adicionarValor(8.5, "Valor de R$ 8,50")}>
               <span>R$ 8,50</span>
             </button>
@@ -193,8 +217,8 @@ function Home(props: {
             <button onClick={() => adicionarValor(8.5, "Retrabalho")}>
               <span>Retrabalho</span>
             </button>
+            <ToastContainer />
           </div>
-
           <div>
             {valoresRegistrados.map((valor, index) => (
               <div key={index}>
@@ -205,7 +229,15 @@ function Home(props: {
                   )}`}</span>{" "}
                   | Km: {valor.km} | {valor.descricao}
                 </p>
-                <button onClick={() => apagarValor(index)}>Apagar</button>
+                <button
+                  onClick={() => {
+                    if (window.confirm("Tem certeza que deseja apagar?")) {
+                      apagarValor(index);
+                    }
+                  }}
+                >
+                  Apagar
+                </button>
               </div>
             ))}
           </div>
