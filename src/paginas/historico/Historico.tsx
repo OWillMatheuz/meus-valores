@@ -150,20 +150,54 @@ function Historico() {
     return entregas.length;
   };
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
-const downloadButton = document.getElementById('download-pdf');
-if (downloadButton) {
-  downloadButton.addEventListener('click', function() {
-    // Crie um novo objeto jsPDF
-    const doc = new jsPDF();
-    // Resto do código...
-  });
-}
-
-
-
-
-
+  const handleDownloadPdf = () => {
+    // Define o tamanho da página A4 em milímetros
+    const PAGE_WIDTH = 150;
+    const PAGE_HEIGHT = 220;
+  
+    // Cria um link para o arquivo CSS para PDF
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'styles-for-pdf.css';
+  
+    // Anexa o link à cabeça do documento
+    const head = document.getElementsByTagName('head')[0];
+    head.appendChild(link);
+  
+    // Cria o PDF a partir do conteúdo HTML que deseja incluir
+    const doc = new jsPDF({
+      orientation: 'portrait',
+      unit: 'mm',
+      format: [400, 650]
+    });
+    
+  
+    const element = document.querySelector('.container.background-whatsapp') as HTMLElement;
+  
+    if (element !== null) {
+      doc.html(element, {
+        callback: function () {
+          // Remove o link CSS para PDF da cabeça do documento
+          head.removeChild(link);
+  
+          // Define a escala de impressão para caber na página
+          const SCALE_FACTOR = 0.05;
+          const options = {
+            pagesplit: true,
+            unit: 'mm',
+            format: [PAGE_WIDTH, PAGE_HEIGHT],
+            scale: SCALE_FACTOR,
+            margin: { top: 10, bottom: 5, left: 10, right: 10 }
+          };
+  
+          // Salva o arquivo PDF
+          doc.save('arquivo.pdf');
+        }
+      });
+    }
+  };
+  
 
   return (
     <>
@@ -201,7 +235,7 @@ if (downloadButton) {
               <th>Valor</th>
               <th>Km</th>
               <th>Data</th>
-              <th>Entrega</th>
+              <th>Saídas</th>
             </tr>
           </thead>
           <tbody>
@@ -216,7 +250,7 @@ if (downloadButton) {
           </tbody>
         </table>
         </div>
-        <button id="download-pdf">Baixar PDF</button>
+        <button id="download-pdf" onClick={handleDownloadPdf}>Baixar PDF</button>
 
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}

@@ -2,6 +2,9 @@ import { SetStateAction, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import React from "react";
 import "./TrocaDeOleoForm.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 interface CalcHistoryItem {
   kmAtual: number;
@@ -35,7 +38,8 @@ function TrocaDeOleoForm() {
     setKmProximaTroca(Number(event.target.value));
   }
 
-  function handleCalcularClick(event: { preventDefault: () => void }) {
+  /*  função para calclar o valor dos km */ 
+  function handleCalcularClick(event: { preventDefault: () => void; }) {
     event.preventDefault();
     const kmFaltantes = kmProximaTroca - kmAtual;
     setKmFaltantes(kmFaltantes);
@@ -44,6 +48,16 @@ function TrocaDeOleoForm() {
       ...calcHistory,
       { kmAtual, kmProximaTroca, kmFaltantes, data: currentDate },
     ]);
+    toast.info(`Faltam ${kmFaltantes} km para a próxima troca de óleo.`, {
+      position: 'top-right',
+      autoClose: 8000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+    });
   }
 
   function handleClearHistory() {
@@ -104,6 +118,7 @@ function TrocaDeOleoForm() {
         <button onClick={handleClearHistory} className="clear-history-button">
           Limpar Histórico
         </button>
+        <ToastContainer />
       </div>
     </div>
     </>

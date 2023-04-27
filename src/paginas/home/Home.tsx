@@ -152,15 +152,34 @@ function Home(props: {
   }
 
   function confirmDelete() {
-    const response = window.confirm("Tem certeza que deseja deletar tudo?");
-    if (response == true) {
+    const response = window.confirm('Tem certeza que deseja deletar tudo?');
+    if (response === true) {
       setValorTotal(0);
       setValoresRegistrados([]);
-      localStorage.removeItem("valorTotal");
-      localStorage.removeItem("valoresRegistrados");
-      alert("Tudo foi deletado com sucesso!");
+      localStorage.removeItem('valorTotal');
+      localStorage.removeItem('valoresRegistrados');
+      toast.success('Tudo foi deletado com sucesso!', {
+        position: "top-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      
     } else {
-      alert("Operação cancelada.");
+      toast.info('Operação cancelada.', {
+        position: 'top-right',
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+      });
     }
   }
   
@@ -241,9 +260,9 @@ function Home(props: {
               </div>
             ))}
           </div>
-          <button onClick={handleDeleteAll} style={{ marginRight: "10px" }}>
-            Deletar tudo
-          </button>
+          <button onClick={confirmDelete} style={{ marginRight: '10px' }}>
+      Deletar tudo
+    </button>
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
