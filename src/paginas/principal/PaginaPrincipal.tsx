@@ -28,7 +28,7 @@ function PaginaPrincipal() {
             <div className="col-md-6">
               <Link to="/registrar" className="botao">
                 <img
-                  src="https://tinypic.host/images/2023/04/22/icons8-editar-propriedade-64.png"
+                  src="https://tinypic.host/images/2023/04/29/icons8-editar-propriedade-64.png"
                   alt="Icone 1"
                   className="icone"
                 />
@@ -38,7 +38,7 @@ function PaginaPrincipal() {
             <div className="col-md-6">
               <Link to="/historico" className="botao">
                 <img
-                  src="https://tinypic.host/images/2023/04/22/icons8-historico-de-encomendas-100.png"
+                  src="https://tinypic.host/images/2023/04/29/icons8-historico-de-encomendas-100.png"
                   alt="Icone 2"
                   className="icone"
                 />
@@ -48,7 +48,7 @@ function PaginaPrincipal() {
             <div className="col-md-6">
               <Link to="/metas" className="botao">
                 <img
-                  src="https://tinypic.host/images/2023/04/22/icons8-objetivo-100.png"
+                  src="https://tinypic.host/images/2023/04/29/icons8-objetivo-100.png"
                   alt="Icone 3"
                   className="icone"
                 />
