@@ -64,6 +64,14 @@ function PaginaPrincipal() {
                 />
                 <p className="texto-botao">Troca de óleo</p>
               </Link>
+              <Link to="/despesas" className="botao">
+                <img
+                  src="https://tinypic.host/images/2023/04/30/icons8-dinheiro-seu-80.png"
+                  alt="Icone 4"
+                  className="icone"
+                />
+                <p className="texto-botao">Despesas</p>
+              </Link>
             </div>
           </div>
         </div>

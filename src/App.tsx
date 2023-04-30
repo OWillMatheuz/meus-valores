@@ -6,6 +6,7 @@ import Historico from './paginas/historico/Historico';
 import PaginaPrincipal from './paginas/principal/PaginaPrincipal';
 import Metas from './paginas/metas/Metas';
 import TrocaDeOleoForm from './paginas/trocadeoleo/TrocaDeOleoForm'
+import Despesas from './despesas/Despesas';
 
 function App() {
   const [valorTotal, setValorTotal] = useState(0);
@@ -23,6 +24,7 @@ function App() {
         <Route path="/historico" element={<Historico />} />
         <Route path="/metas" element={<Metas />} />
         <Route path="/km" element={<TrocaDeOleoForm/>} />
+        <Route path="/despesas" element={<Despesas/>} />
       </Routes>
     </BrowserRouter>
   );
